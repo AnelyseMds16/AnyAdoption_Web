@@ -1,7 +1,8 @@
 <?php
+use App\Http\Controllers\Initial\InicioController;
 
 use App\Http\Controllers\InformacoesController;
-/* use App\Http\Controllers\Initial\InicioController; */
+use App\Http\Controllers\InformacoesGatoController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +16,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [InicioController::class, "index"]);
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::resource("cachorro", CachorroController::class);
+    Route::get("/informacoes", [InformacoesController::class, "index"]);
+    Route::get("/informacoesGatos", [InformacoesGatoController::class, "index"]);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
-Route::get("/informacoes", [InformacoesController::class, "index"]);
-Route::get("/inicio", [InicioController::class, "index"]);

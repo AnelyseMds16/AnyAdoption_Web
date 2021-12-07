@@ -12,6 +12,9 @@
 <body>
   <header>
     <section>
+      <a href="{{url('/')}}" class="text-sm text-gray-700 underline">
+        <img src="{{asset('img/sair.png')}}" alt="sair" class="sair">
+      </a>
       <a> Não compre, adote! </a> 
     </section>
   </header>
@@ -21,7 +24,7 @@
   </main>
   <foot>
     <picture>
-      <img src="{{asset('img/logo.svg')}}" alt="Logo" />
+      <img src="{{asset('img/logo.svg')}}" alt="Logo" class="imgfoot"/>
     </picture>
   </foot>
 </body>
